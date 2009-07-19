@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="en-us" />
+	<title>onEnterClick</title>
+	<style type="text/css">
+		body {font-size: 90%; font-family: "Courier New", Courier, monospace;}
+		fieldset { margin: 1em 0;}
+		ul {list-style:none;}
+		label {display:block;}
+		code {
+			display:block;
+			white-space: pre; 
+			background:#000; 
+			color: #393;
+			border: 1px dotted #393;
+			padding: 0 10px;
+			margin: 10px;
+		}
+		kbd {border:1px solid #cecece;padding:2px;}
+	</style>
+	<script type="text/javascript" src="_ui/js/lib/prototype.js"></script>
+	<script type="text/javascript" src="_ui/js/enterclick.js"></script>
+	<script type="text/javascript">
+	//<![CDATA[
+	document.observe('dom:loaded', function(ce){
+		$('fst_login').onEnterClick($('btn_login'));
+		$('fst_forgot').onEnterClick($('btn_forgot'));		
+	});
+	//]]>
+	</script>
+</head>
+<body>
+	
+	<h1>onEnterClick</h1>
+	<p>
+		onEnterClick addresses the problem when a form has multiple buttons, 
+		and an undesired button is "clicked" when the <kbd>Enter</kbd> key is used. 
+		By default, the browser submits the form when the <kbd>Enter</kbd> key is used and 
+		an INPUT tag<var>(type= text | password | checkbox | radio)</var> has focus 
+		--it submits using the first submit button it finds. 
+		onEnterClick extends Element to associate an Element with a specific button, 
+		and will click the specified button when Enter is used within it's descendants. 
+		onEnterClick depends on Prototype.js (v1.6.0.3) and extends Element.
+	</p>
+	<h2>Example</h2>
+
+	<p>
+		Below are two fieldsets, one for logging in and one for resetting a password.
+		A button is associated with each fieldset.
+	</p>
+	<code>
+$('fst_login').onEnterClick($('btn_login'));
+$('fst_forgot').onEnterClick($('btn_forgot'));
+	</code>		
+	</p>
+		If Enter is pressed when focused on an input within the login fieldset,
+		the <var>btn_login</var> button's click event will be fired. 
+		If the Enter key is pressed when focused on an input forgot fieldset, 
+		the <var>btn_forgot</var> button will be clicked.
+	</p>
+	<form id="frmLogin" method="get">
+		<fieldset id="fst_login">
+			<legend>Log In (fieldset#fst_login)</legend>
+			<ul>
+				<li>
+			        <label id="lbl_txt_Username" for="txt_UserName">Email</label>
+			        <input type="text" id="txt_UserName" name="txt_UserName"/>		
+				</li>
+				<li>
+			        <label id="lbl_txt_Password" for="txt_Password">Password</label>
+			        <input type="password" id="txt_Password" name="txt_Password"/>
+				</li>
+				<li>
+					<label id="lbl_txa_Promocode" for="txa_Promocode">Superfluous fields</label>
+					<textarea id="txa_promocode" name="txa_promocode"></textarea>
+				</li>
+				<li>
+					<select id="sel_color">
+						<option value="red">Red</option>
+						<option value="red">Green</option>
+						<option value="red">Blue</option>
+					</select>					
+				</li>
+				<li>
+					<input type="checkbox" id="chk_remember" name="chk_remember"/>				
+				</li>
+				<li>
+					<label><input type="radio" id="rad_breakfast" name="meal" value="breakfast"/> Breakfast</label>
+					<label><input type="radio" id="rad_lunch" name="meal" value="lunch" /> Lunch</label>
+					<label><input type="radio" id="rad_dinner" name="meal" value="dinner" /> Dinner</label>					
+				</li>
+			</ul>
+	        <input type="submit" value="Log In" id="btn_login" name="btn_login"/>
+		</fieldset>
+		
+		<fieldset id="fst_forgot">
+		    <legend>Forgot (fieldset#fst_forgot)</legend>
+			<p>Enter your e-mail address below and we will send you instructions to reset your password. Well, not really</p>
+			<ul>
+				<li>
+			        <label for="txt_email">Email</label>
+			        <input type="text" id="txt_email" name="txt_email"/>
+				</li>
+			</ul>
+			<input type="submit" value="Forgot" id="btn_forgot" name="btn_forgot"/>
+		</fieldset>
+	</form>
+	
+
+</body>
+</html>
