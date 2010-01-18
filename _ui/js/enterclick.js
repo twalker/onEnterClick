@@ -42,7 +42,7 @@ var EnterClick = Class.create({
 					e.stop(); 
 					if (Object.isFunction(this.callback)) {
 						this.callback(e);
-					} else this.button.click();
+					} else this.callback.click();
 			}
 		}.bindAsEventListener(this));
 	},
