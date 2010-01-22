@@ -1,5 +1,5 @@
-// onEnterClick v1.0
-// (c) 2008 Tim Walker
+// onEnterClick v1.1
+// (c) 2010 Tim Walker
 // onEnterClick is freely distributable under the terms of an MIT-style license.
 
 /**

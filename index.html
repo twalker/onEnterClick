@@ -26,7 +26,12 @@
 	//<![CDATA[
 	document.observe('dom:loaded', function(ce){
 		$('fst_login').onEnterClick($('btn_login'));
-		$('fst_forgot').onEnterClick($('btn_forgot'));		
+		$('fst_forgot').onEnterClick($('btn_forgot'));
+		
+		// Using callback
+		$('fst_other').onEnterClick(function(e){
+			$('callback_output').update("You pressed key #{keyCode} somewhere within this fieldset.".interpolate(e));
+		});
 	});
 	//]]>
 	</script>
@@ -42,7 +47,7 @@
 		--it submits using the first submit button it finds. 
 		onEnterClick extends Element to associate an Element with a specific button, 
 		and will click the specified button when Enter is used within it's descendants. 
-		onEnterClick depends on Prototype.js (v1.6.0.3) and extends Element.
+		onEnterClick depends on Prototype.js (v1.6.0.3+) and extends Element.
 	</p>
 	<h2>Example</h2>
 
@@ -96,15 +101,26 @@ $('fst_forgot').onEnterClick($('btn_forgot'));
 		</fieldset>
 		
 		<fieldset id="fst_forgot">
-		    <legend>Forgot (fieldset#fst_forgot)</legend>
+		  <legend>Forgot (fieldset#fst_forgot)</legend>
 			<p>Enter your e-mail address below and we will send you instructions to reset your password. Well, not really</p>
 			<ul>
 				<li>
-			        <label for="txt_email">Email</label>
+			    		<label for="txt_email">Email</label>
 			        <input type="text" id="txt_email" name="txt_email"/>
 				</li>
 			</ul>
 			<input type="submit" value="Forgot" id="btn_forgot" name="btn_forgot"/>
+		</fieldset>
+		
+		<fieldset id="fst_other">
+			<legend>Double D bonus: Using a callback (fieldset#fst_other)</legend>
+			<ul>
+				<li>
+					<label id="lbl_txt_other" for="txt_other">Other</label>
+					<input type="text" id="txt_other" name="txt_other"></textarea>
+				</li>
+				<li id="callback_output">#callback_output</li>
+			</ul>
 		</fieldset>
 	</form>
 	
